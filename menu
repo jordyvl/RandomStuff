@@ -1,0 +1,67 @@
+local termWidth, termHeight = term.getSize()
+local selectedItem = 1
+local onMainMenu = true
+ 
+function Choice1()
+ term.clear()
+ term.setCursorPos(1,1)
+ print("CHOICE 1")
+ sleep(1)
+end
+
+function Choice2()
+term.clear()
+term.setCursorPos(1,1)
+print("CHOICE 2")
+sleep(1)
+end
+ 
+function Exit()
+ onMainMenu = false
+end
+ 
+mainMenu = {
+[1] = { text = "Choice 1", handler = Choice1 },
+[2] = { text = "Choice 2", handler = Choice2 },
+[3] = { text = "Exit", handler = Exit }
+}
+ 
+function printMenu( menu )
+ for i=1,#menu do
+  if i == selectedItem then
+   print(">> "..menu[i].text)
+  else
+   print("   "..menu[i].text)
+  end
+ end
+end
+ 
+function onKeyPressed( key, menu )
+ if key == keys.enter then
+  onItemSelected(menu)
+ elseif key == keys.up then
+  if selectedItem > 1 then
+   selectedItem = selectedItem - 1
+  end
+ elseif key == keys.down then
+  if selectedItem < #menu then
+   selectedItem = selectedItem + 1
+  end
+ end
+end
+ 
+function onItemSelected( menu )
+ menu[selectedItem].handler()
+end
+ 
+function main()
+ while onMainMenu do
+  term.clear()
+  term.setCursorPos(1,1)
+  printMenu(mainMenu)
+  event, key = os.pullEvent("key")
+  onKeyPressed(key,mainMenu)
+ end
+end
+ 
+main()
