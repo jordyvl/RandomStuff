@@ -1,0 +1,288 @@
+--the os Will be completely rewritten please do not. use this version 
+local termWidth, termHeight = term.getSize()
+local selectedItem = 1
+local onMainMenu = true
+
+function Choice15()
+term.clear()
+term.setCursorPos(1,1)
+print"Dit Besturingssysteem is ontwikkeld door VLWARE"
+print"VLWARE is een bedrijf van jordyvl"
+print"U mag het gehele OS kopieren of delen ervan"
+print"Maar we zijn niet aansprakelijk voor schade of dataverlies"
+print"Over OS:"
+print"VLWARE Magazijn OS"
+print"Versie: 0.1 Beta"
+print"Build: 101"
+print"Druk op een toets om door te gaan"
+os.pullEvent("key")
+end
+
+function Choice1()
+ term.clear()
+ term.setCursorPos(1,1)
+ print("Actuele Voorraad")
+ sleep(3)
+ term.clear()
+ term.setCursorPos(1,1)
+ print"Voorraad Wordt Geladen..."
+ sleep(3)
+ term.clear()
+ term.setCursorPos(1,1)
+ shell.openTab("disk/magazijn/read")
+ term.clear()
+ term.setCursorPos(1,1)
+ print"Tab Opened"
+ sleep(3)
+ end
+
+
+function Choice2()
+term.clear()
+term.setCursorPos(1,1)
+print("Product Toevoegen")
+sleep(1)
+term.clear()
+term.setCursorPos(1,1)
+print"Hoe veel?"
+number = read()
+term.clear()
+term.setCursorPos(1,1)
+print"Welk product?"
+product = read()
+term.clear()
+term.setCursorPos(1,1)
+print"Locatie?"
+locatie = read()
+g = fs.open("disk/magazijn/voorraad", "a")
+g.writeLine(""..number.."* "..product.." In "..locatie.."")
+g.close()
+end
+
+function Choice3()
+term.clear()
+term.setCursorPos(1,1)
+print("Beheerder Modus")
+sleep(2)
+term.clear()
+term.setCursorPos(1,1)
+print"Wachtwoord AUB"
+pass = read("*")
+if pass == "password" then
+term.clear()
+term.setCursorPos(1,1)
+print"Ingelogd"
+sleep(3)
+term.clear()
+term.setCursorPos(1,1)
+print"Verander de voorraad nummers A.U.B"
+sleep(5)
+term.clear()
+term.setCursorPos(1,1)
+shell.run"edit disk/magazijn/voorraad"
+term.clear()
+term.setCursorPos(1,1)
+print"Voorraad Aangepast!"
+print"Systeem Wordt Afgesloten"
+sleep(3)
+os.shutdown()
+end
+end
+
+function Choice4()
+shell.run"disk/magazijn/monitor"
+term.clear()
+term.setCursorPos(1,1)
+print"Voorraad wordt op monitor getoond"
+sleep(3)
+end
+
+ function Choice5()
+ shell.run"mail"
+ end
+ 
+  function Choice6()
+  term.clear()
+  term.setCursorPos(1,1)
+  print"Voer uw wachtwoord in!"
+  pw = read("*")
+  if pw == "password" then
+  shell.run"disk/Programs/luaide"
+  end
+  end 
+
+function Choice7()
+shell.openTab("disk/magazijn/gr")
+term.clear()
+term.setCursorPos(1,1)
+print"Tab geopend"
+sleep(3)
+end
+
+function Choice8()
+shell.run"disk/magazijn/grm"
+term.clear()
+term.setCursorPos(1,1)
+print"Grondstoffen voorraad wordt nu op de monitor getoond"
+sleep(3)
+end
+
+function Choice9()
+term.clear()
+term.setCursorPos(1,1)
+print"Welke grondstof?"
+g = read()
+term.clear()
+term.setCursorPos(1,1)
+print"Welke Locatie?"
+l = read()
+h = fs.open("disk/magazijn/grondstoffen", "a")
+h.writeLine(""..g.." In "..l.."")
+h.close()
+term.clear()
+term.setCursorPos(1,1)
+print(""..g.." Toegevoegd")
+sleep(3)
+end
+
+function Choice10()
+term.clear()
+term.setCursorPos(1,1)
+print"ComputerStuff"
+sleep(3)
+term.clear()
+term.setCursorPos(1,1)
+shell.openTab"disk/magazijn/cv"
+print"Tab Geopend"
+sleep(3)
+end
+
+function Choice11()
+term.clear()
+term.setCursorPos(1,1)
+print"ComputerStuff Toevoegen"
+sleep(3)
+term.clear()
+term.setCursorPos(1,1)
+print"Hoeveel?"
+aantal = read()
+term.clear()
+term.setCursorPos(1,1)
+print"Welk Artikel?"
+artikel = read()
+term.clear()
+term.setCursorPos(1,1)
+print"Locatie?"
+locatie = read()
+h = fs.open("disk/magazijn/computer", "a")
+h.writeLine(""..aantal.."* "..artikel.." In "..locatie.."")
+h.close()
+term.clear()
+term.setCursorPos(1,1)
+print"Opgeslagen"
+sleep(3)
+end
+
+function Choice12()
+term.clear()
+term.setCursorPos(1,1)
+print"Voer uw wachtwoord in"
+pass = read("*")
+if pass == "password" then
+term.clear()
+term.setCursorPos(1,1)
+print"Vergeet niet op te slaan!"
+sleep(3)
+shell.run"edit disk/magazijn/computer"
+end
+end
+
+function Choice13()
+term.clear()
+term.setCursorPos(1,1)
+shell.run"disk/magazijn/cm"
+print"ComputerStuff wordt weergegeven op monitor"
+sleep(3)
+end
+
+function Choice14()
+term.clear()
+term.setCursorPos(1,1)
+print"Voer uw wachtwoord in!"
+pass = read("*")
+if pass == "password" then
+term.clear()
+term.setCursorPos(1,1)
+print"Vergeet niet de shell af te sluiten!"
+sleep(3)
+shell.openTab("shell")
+end
+end
+
+function Exit()
+ term.clear()
+ term.setCursorPos(1,1)
+ print"Systeem Wordt Afgesloten!"
+ sleep(3)
+ os.shutdown()
+ onMainMenu = false
+end
+ 
+mainMenu = {
+[1] = { text = "VLWARE Magazijn OS 0.1 Beta" , handler = Choice15 },
+[2] = { text = "Actuele Voorraad", handler = Choice1 },
+[3] = { text = "Product Toevoegen", handler = Choice2 },
+[4] = { text = "Beheerder Modus", handler = Choice3 },
+[5] = { text = "Voorraad Tonen Op Monitor", handler = Choice4 },
+[6] = { text = "Mail voor Magazijn", handler = Choice5 },
+[7] = { text = "LuaIDE Starten", handler = Choice6 },
+[8] = { text = "Grondstoffen Tonen", handler = Choice7 },
+[9] = { text = "Grondstoffen Op Monitor", handler = Choice8 },
+[10] = { text = "Grondstof Toevoegen", handler = Choice9 },
+[11] = { text = "ComputerStuff Weergeven", handler = Choice10 },
+[12] = { text = "ComputerStuff Toevoegen", handler = Choice11 },
+[13] = { text = "ComputerStuff Bewerken", handler = Choice12 },
+[14] = { text = "ComputerStuff Tonen Op Monitor", handler = Choice13 },
+[15] = { text = "Shell Starten", handler = Choice14 },
+[16] = { text = "Verlaten", handler = Exit }
+}
+ 
+function printMenu( menu )
+ for i=1,#menu do
+  if i == selectedItem then
+   print(">> "..menu[i].text)
+  else
+   print("   "..menu[i].text)
+  end
+ end
+end
+ 
+function onKeyPressed( key, menu )
+ if key == keys.enter then
+  onItemSelected(menu)
+ elseif key == keys.up then
+  if selectedItem > 1 then
+   selectedItem = selectedItem - 1
+  end
+ elseif key == keys.down then
+  if selectedItem < #menu then
+   selectedItem = selectedItem + 1
+  end
+ end
+end
+ 
+function onItemSelected( menu )
+ menu[selectedItem].handler()
+end
+ 
+function main()
+ while onMainMenu do
+  term.clear()
+  term.setCursorPos(1,1)
+  printMenu(mainMenu)
+  event, key = os.pullEvent("key")
+  onKeyPressed(key,mainMenu)
+ end
+end
+ 
+main()

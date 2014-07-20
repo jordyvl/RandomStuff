@@ -1,0 +1,76 @@
+--WARNING SYSTEM IS NOT READY FOR USAGE YET
+local termWidth, termHeight = term.getSize()
+local selectedItem = 1
+local onMainMenu = true
+ 
+function Choice1()
+ term.clear()
+ term.setCursorPos(1,1)
+ print("VLWARE Basement OS English edition")
+ print("Version 0.2 Beta")
+ print("Build 003")
+ print("Please do not copy without my premission")
+ print("I Am not responsible for any damage your computer may get")
+ print("Press any key to continue")
+ os.pullEvent("key")
+end
+
+function Choice2()
+onMainMenu = false
+shell.run("/.vlware/userctl")
+shell.run("/.vlware/init")
+end
+ 
+function Exit()
+ onMainMenu = false
+ term.clear()
+ term.setCursorPos(1,1)
+end
+ 
+mainMenu = {
+[1] = { text = "About VLWARE Basement OS", handler = Choice1 },
+[2] = { text = "User Control", handler = Choice2 },
+[3] = { text = "Exit", handler = Exit }
+}
+ 
+function printMenu( menu )
+ for i=1,#menu do
+  if i == selectedItem then
+   print(">> "..menu[i].text)
+  else
+   print("   "..menu[i].text)
+  end
+ end
+end
+ 
+function onKeyPressed( key, menu )
+ if key == keys.enter then
+  onItemSelected(menu)
+ elseif key == keys.up then
+  if selectedItem > 1 then
+   selectedItem = selectedItem - 1
+  end
+ elseif key == keys.down then
+  if selectedItem < #menu then
+   selectedItem = selectedItem + 1
+  end
+ end
+end
+ 
+function onItemSelected( menu )
+ menu[selectedItem].handler()
+end
+ 
+function main()
+ while onMainMenu do
+  term.clear()
+  term.setCursorPos(1,1)
+  print("VLWARE Magazijn OS 0.2 Beta English Edition")
+  term.setCursorPos(1,2)
+  printMenu(mainMenu)
+  event, key = os.pullEvent("key")
+  onKeyPressed(key,mainMenu)
+ end
+end
+ 
+main()
