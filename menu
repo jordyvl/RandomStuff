@@ -29,7 +29,7 @@ mainMenu = {
 function printMenu( menu )
  for i=1,#menu do
   if i == selectedItem then
-   print(">> "..menu[i].text)
+   print("->> "..menu[i].text)
   else
    print("   "..menu[i].text)
   end
