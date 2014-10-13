@@ -1,0 +1,21 @@
+-- just a random file that isnt finished yet
+-- feel free to use lines of this script for your own script
+-- use of this script is your own risk as i didnt test it yet
+
+function clear()
+term.clear()
+term.setCursorPos(1,1)
+end
+
+clear()
+print"Starting system"
+print"VLWARE BOOTLOADER STARTED"
+if fs.exists("boot") then
+clear()
+print"BOOTFILE FOUND AUTOMATIC LOADING IN 3 SECONDS"
+sleep(3)
+shell.run("boot")
+else
+clear()
+print"There is no file with the name boot found"
+print"Please rename your bootfile to boot"
