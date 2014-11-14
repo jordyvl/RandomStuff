@@ -20,4 +20,5 @@ clear()
 print"There is no file with the name boot found"
 print"Please rename your bootfile to boot"
 print"And ten te again"
-print"If there are any issues please report thema on github"
+print"If there are any issues please report them on github"
+print"For questions please E-Mail me"
