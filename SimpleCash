@@ -1,0 +1,41 @@
+local money = 100
+function clearPrint(string)
+  term.clear()
+  term.setCursorPos(1,1)
+  print(string)
+end
+
+while true do
+  clearPrint("---------------")
+  print("-cash register-")
+  print("---------------")
+  print("Current balance: "..money.."$.")
+  print("Type a command: [add, check, remove]")
+  write("> ")
+  input = read()
+  if input == "add" then
+    clearPrint("----------")
+    print("-Add Cash-")
+    print("----------")
+    write "Add Ammount: "
+    add = read("$")
+    money = money + add
+    print("Your new balance: "..money.."$.")
+  elseif input == "check" then
+    clearPrint("---------------")
+    print("-cash checking-")
+    print("---------------")
+    print("You currently have: "..money.."$.")
+    sleep(2)
+  elseif input == "remove" then
+    clearPrint("-------------")
+    print("-Remove cash-")
+    print("-------------")
+    write "Subtract Ammount: "
+    remove = read("$")
+    money = money - remove
+    print("Your new balance: "..money.."$.")
+   else
+   print"Wrong input"
+  end
+end
