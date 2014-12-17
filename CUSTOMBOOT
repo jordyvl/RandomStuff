@@ -10,7 +10,7 @@ end
 clear()
 print"Starting system"
 print"VLWARE BOOTLOADER STARTED"
-if fs.exists("boot") then
+if fs.exists("/boot") then
 clear()
 print"BOOTFILE FOUND AUTOMATIC LOADING IN 3 SECONDS"
 sleep(3)
