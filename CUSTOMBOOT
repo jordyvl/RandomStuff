@@ -14,7 +14,7 @@ if fs.exists("/boot") then
 clear()
 print"BOOTFILE FOUND AUTOMATIC LOADING IN 3 SECONDS"
 sleep(3)
-shell.run("boot")
+shell.run("/boot")
 else
 clear()
 print"There is no file with the name boot found"
