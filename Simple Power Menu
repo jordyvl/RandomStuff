@@ -1,0 +1,34 @@
+sid = 0
+function clear()
+term.clear()
+term.setCursorPos(1,1)
+end
+function menu(id, text)
+if sid == id then
+write"> "
+else
+write"* "
+end
+print(text)
+end
+while true do
+clear()
+menu(0, "Reboot")
+menu(1, "Shutdown")
+event, key = os.pullEvent("key")
+if key == 200 then
+if sid > 0 then
+sid = sid - 1
+end
+elseif key == 208 then
+if sid < 1 then
+sid = sid + 1
+end
+elseif key == 28 then
+if sid == 0 then
+os.reboot()
+elseif sid == 1 then
+os.shutdown()
+end
+end
+end
