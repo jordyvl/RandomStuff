@@ -1,4 +1,4 @@
-local money = 100 -- amount of money to start with
+local money = 0 -- amount of money to start with
 function clearPrint(string)
   term.clear()
   term.setCursorPos(1,1)
